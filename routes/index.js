@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// Home Route
+router.get('/', (req, res) => {
+    res.status(200).send("Welcome to Cinema-Booking Server")
+})
+
+// Not Found Route
+router.get('*', (req, res) => {
+    res.status(404).send('Booking | 404 Not Found')
+})
 
 module.exports = router;
