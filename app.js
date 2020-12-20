@@ -3,20 +3,44 @@ const express = require('express');
 const path = require('path');
 // const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+// Config
+require('dotenv').config({
+  path: './config/keys.env'
+})
+
+// Middleware
+// app.use(cors());
+
+// Import Error middleware
+const {error} = require('./middleware/error');
+
+// Import DB
+const { connectDB } = require('./db/dbConnection');
+
+// Connecting DB
+connectDB();
 
 const app = express();
 
+// Import Routes
+const indexRoute = require('./routes');
+const seatsRoute = require('./routes/seats');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+// Handling Routes
+app.use('/', indexRoute);
+app.use('/seats', seatsRoute);
+app.use(error);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
