@@ -6,8 +6,9 @@ const seatsSchema = new mongoose.Schema(
             type: Number,
             required: [true, 'Seat is required'],
         },
-        status: {
+        isBooked: {
             type: Boolean,
+            default: false,
             required: true,
         },
     },
@@ -16,6 +17,6 @@ const seatsSchema = new mongoose.Schema(
     }
 );
 
-const Note = mongoose.model('Seat', seatsSchema)
+const Seat = mongoose.model('Seat', seatsSchema)
 
-module.exports = Note;
+module.exports = Seat;

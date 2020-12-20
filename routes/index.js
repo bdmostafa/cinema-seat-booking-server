@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Home Route
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     res.status(200).send("Welcome to Cinema-Booking Server")
 })
 

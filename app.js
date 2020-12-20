@@ -35,8 +35,8 @@ app.use(express.urlencoded({ extended: false }));
 
 
 // Handling Routes
-app.use('/', indexRoute);
 app.use('/seats', seatsRoute);
+app.use('/', indexRoute);
 app.use(error);
 
 
